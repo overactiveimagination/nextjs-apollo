@@ -3,7 +3,7 @@ import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import getConfig from "next/config";
 import bcrypt from "bcrypt";
-import v4 from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 
 const JWT_SECRET = getConfig().serverRuntimeConfig.JWT_SECRET;
 
@@ -13,7 +13,7 @@ function createUser(data) {
   const salt = bcrypt.genSaltSync();
 
   return {
-    id: v4(),
+    id: uuidv4(),
     email: data.email,
     hashedPassword: bcrypt.hashSync(data.password, salt)
   };

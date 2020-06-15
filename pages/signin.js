@@ -6,6 +6,7 @@ import { useMutation, useApolloClient } from "@apollo/react-hooks";
 import Field from "../components/field";
 import { getErrorMessage } from "../lib/form";
 import { useRouter } from "next/router";
+import tw, { css } from "twin.macro";
 
 const SignInMutation = gql`
   mutation SignInMutation($email: String!, $password: String!) {
@@ -47,38 +48,40 @@ function SignIn() {
   }
 
   return (
-    <>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        {errorMsg && <p>{errorMsg}</p>}
-        <Field
-          name="email"
-          type="email"
-          autoComplete="email"
-          required
-          label="Email"
-        />
-        <Field
-          name="password"
-          type="password"
-          autoComplete="password"
-          required
-          label="Password"
-        />
-        <button
-          type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Sign in
-        </button>{" "}
-        or{" "}
-        <Link href="signup">
-          <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Sign up
-          </a>
-        </Link>
-      </form>
-    </>
+    <div css={[tw`flex flex-col items-center py-16`]}>
+      <div tw="flex flex-col justify-center">
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit}>
+          {errorMsg && <p>{errorMsg}</p>}
+          <Field
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            label="Email"
+          />
+          <Field
+            name="password"
+            type="password"
+            autoComplete="password"
+            required
+            label="Password"
+          />
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Sign in
+          </button>{" "}
+          or{" "}
+          <Link href="signup">
+            <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Sign up
+            </a>
+          </Link>
+        </form>
+      </div>
+    </div>
   );
 }
 
