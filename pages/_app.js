@@ -1,8 +1,12 @@
 import "tailwindcss/dist/base.min.css";
 import "tailwindcss/dist/components.min.css";
 import "tailwindcss/dist/utilities.min.css";
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+import Theme from "./../components/Theme";
 
-export default MyApp;
+const App = ({ Component, pageProps }) => (
+  <Theme>
+    <Component {...pageProps} />
+  </Theme>
+);
+
+export default App;
